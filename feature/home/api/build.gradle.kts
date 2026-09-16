@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.sense.feature.home.api"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 24
