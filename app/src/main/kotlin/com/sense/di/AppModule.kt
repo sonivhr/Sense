@@ -1,0 +1,18 @@
+package com.sense.di
+
+import com.sense.core.navigation.Navigator
+import com.sense.feature.home.api.HomeKey
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.scopes.ActivityRetainedScoped
+
+@Module
+@InstallIn(ActivityRetainedComponent::class)
+object AppModule {
+
+    @Provides
+    @ActivityRetainedScoped
+    fun provideNavigator(): Navigator = Navigator(HomeKey)
+}
