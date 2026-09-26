@@ -1,7 +1,9 @@
-package com.sense.feature.search.impl
+package com.sense.feature.home.impl.di
 
 import com.sense.core.navigation.EntryProviderInstaller
 import com.sense.core.navigation.Navigator
+import com.sense.feature.home.api.HomeKey
+import com.sense.feature.home.impl.composables.HomeScreen
 import com.sense.feature.search.api.SearchKey
 import dagger.Module
 import dagger.Provides
@@ -11,13 +13,13 @@ import dagger.multibindings.IntoSet
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-object SearchModule {
+object HomeModule {
 
     @Provides
     @IntoSet
-    fun provideSearchEntryProviderInstaller(navigator: Navigator): EntryProviderInstaller = {
-        entry<SearchKey> {
-            SearchScreen(onBackClick = { navigator.goBack() })
+    fun provideHomeEntryProviderInstaller(navigator: Navigator): EntryProviderInstaller = {
+        entry<HomeKey> {
+            HomeScreen(onSearchClick = { navigator.navigate(SearchKey) })
         }
     }
 }

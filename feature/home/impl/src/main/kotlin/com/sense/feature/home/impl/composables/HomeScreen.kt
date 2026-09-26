@@ -1,4 +1,4 @@
-package com.sense.feature.home.impl
+package com.sense.feature.home.impl.composables
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,18 +12,22 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.sense.feature.home.impl.presentation.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    onSearchClick: () -> Unit
+    onSearchClick: () -> Unit,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
+    val uiState = viewModel.uiState
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Sense") },
+                title = { Text(uiState.title) },
                 actions = {
                     IconButton(onClick = onSearchClick) {
                         Icon(

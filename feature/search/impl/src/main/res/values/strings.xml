@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_hint">Search a feature</string>
+    <string name="search_no_results">No results</string>
+    <string name="clear_search_content_description">Clear search</string>
+</resources>
