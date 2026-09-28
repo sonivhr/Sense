@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.sense.feature.search.impl.Feature
 import com.sense.feature.search.impl.R
 import com.sense.feature.search.impl.presentation.SearchViewModel
 
@@ -66,10 +67,10 @@ fun SearchScreen(
             when {
                 uiState.isLoading -> CircularProgressIndicator()
 
-                uiState.errorMessage.isNotBlank() -> SearchResultRow(result = uiState.errorMessage)
+                uiState.errorMessage.isNotBlank() -> SearchResultError(result = uiState.errorMessage)
 
                 uiState.results.isEmpty() && uiState.query.isNotBlank() ->
-                    SearchResultRow(result = stringResource(R.string.search_no_results))
+                    SearchResultError(result = stringResource(R.string.search_no_results))
 
                 else -> uiState.results.forEach { result -> SearchResultRow(result) }
             }
@@ -115,6 +116,22 @@ private fun SearchTextField(
 
 @Composable
 private fun SearchResultRow(
+    feature: Feature,
+) {
+    Text(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                horizontal = 16.dp,
+                vertical = 8.dp,
+            ),
+        text = feature.title,
+        textAlign = TextAlign.Start
+    )
+}
+
+@Composable
+private fun SearchResultError(
     result: String,
 ) {
     Text(
